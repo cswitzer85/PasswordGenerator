@@ -1,6 +1,6 @@
 //---------------_______________---------------Variables---------------_______________---------------
-var capSelected;
-var nextTag;
+var lowerSelected
+var capitalSelected;
 var characterLengthSelected;
 var characterLength;
 var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "~", "`", "_", "-", "+", "\=", "{", "[", "\'", "]", "}", "\\", "|", ";", ":", "'", ",", "<", ".", ">", "/", "?"];
@@ -32,18 +32,29 @@ function selectPasswordLength() {
   }
 } //end of lengthSelect function
 
-if (capSelected !== true || false); {
-  function capitalsInclude() {
-    capSelected = confirm("Would you like to include capital letters? ok = yes, cancel = no)");
+function lowerInclude() {
+  if (lowerSelected !== true || false); {
+    lowerSelected = confirm("Would you like to include lower-case letters? ok = yes, cancel = no)");
     //$$$$$*****changes value of calEl to ture or false, based on the users prompt selection*****$$$$$
-    if (capSelected !== true) {
-      capSelected = false;
+    if (lowerSelected !== true) {
+      lowerSelected = false;
+    }
+  }
+} // end of capitalsIncluded function
+
+function capitalsInclude() {
+  if (capitalSelected !== true || false); {
+    capitalSelected = confirm("Would you like to include capital letters? ok = yes, cancel = no)");
+    //$$$$$*****changes value of calEl to ture or false, based on the users prompt selection*****$$$$$
+    if (capitalSelected !== true) {
+      capitalSelected = false;
     }
   }
 } // end of capitalsIncluded function
 
 function createPassword() {
   selectPasswordLength();
+  lowerInclude();
   capitalsInclude();
 } //end of create password function
 
