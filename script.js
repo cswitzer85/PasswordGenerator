@@ -1,6 +1,8 @@
 //---------------_______________---------------Variables---------------_______________---------------
 var lowerSelected
 var capitalSelected;
+var numbersSelected;
+var specialSelected;
 var characterLengthSelected;
 var characterLength;
 var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "~", "`", "_", "-", "+", "\=", "{", "[", "\'", "]", "}", "\\", "|", ";", ":", "'", ",", "<", ".", ">", "/", "?"];
@@ -18,6 +20,7 @@ var passwordEl = document.querySelector("#password");
 
 //functions
 function selectPasswordLength() {
+  characterLengthSelected = null;
   var characterLengthSelected;
   while (characterLengthSelected !== true) {
     characterLength = prompt("Please enter the number of characters you would like in the password. (Note: Minimum: 8 & Maximum: 128; there will be a prompt for each.)");
@@ -27,12 +30,14 @@ function selectPasswordLength() {
       characterLengthSelected = true;
     } else {
       alert("ERROR Please enter a valid age");
-      characterLengthSelected = undefined;
+      characterLengthSelected = null;
     }
   }
 } //end of lengthSelect function
 
+//------------------------------------------------------------------*May delete and make lower-case the default*-------
 function lowerInclude() {
+  lowerSelected = null;
   if (lowerSelected !== true || false); {
     lowerSelected = confirm("Would you like to include lower-case letters? ok = yes, cancel = no)");
     //$$$$$*****changes value of calEl to ture or false, based on the users prompt selection*****$$$$$
@@ -40,9 +45,10 @@ function lowerInclude() {
       lowerSelected = false;
     }
   }
-} // end of capitalsIncluded function
+} // end of lowerIncluded function
 
 function capitalsInclude() {
+  capitalSelected = null;
   if (capitalSelected !== true || false); {
     capitalSelected = confirm("Would you like to include capital letters? ok = yes, cancel = no)");
     //$$$$$*****changes value of calEl to ture or false, based on the users prompt selection*****$$$$$
@@ -52,11 +58,46 @@ function capitalsInclude() {
   }
 } // end of capitalsIncluded function
 
+function numbersInclude() {
+  numbersSelected = null;
+  if (numbersSelected !== true || false); {
+    numbersSelected = confirm("Would you like to include numbers? ok = yes, cancel = no)");
+    //$$$$$*****changes value of calEl to ture or false, based on the users prompt selection*****$$$$$
+    if (numbersSelected !== true) {
+      numbersSelected = false;
+    }
+  }
+} // end of numbersIncluded function
+
+function specialInclude() {
+  specialSelected = null;
+  if (specialSelected !== true || false); {
+    specialSelected = confirm("Would you like to include special characters? ok = yes, cancel = no)");
+    //$$$$$*****changes value of calEl to ture or false, based on the users prompt selection*****$$$$$
+    if (specialSelected !== true) {
+      specialSelected = false;
+    }
+  }
+} // end of capitalsIncluded function
+
 function createPassword() {
   selectPasswordLength();
   lowerInclude();
   capitalsInclude();
+  numbersInclude();
+  specialInclude();
 } //end of create password function
+
+
+function build(){
+// if """function"""Selected is true, add to list of critera; if false, move on
+// display criteria to user for confirmation
+// run loop to get random selection from list of true selections to run the same number of times as the character length defined by user
+// render resulting password to the password section of the html file
+}
+
+
+
 
 
 //$$$$$*****when generate button is clicked, password generation is initialized*****$$$$$
@@ -64,5 +105,13 @@ generateEl.addEventListener("click", function (event) {
   event.preventDefault(); //may not be needed
 
   createPassword();
+  console.log(
+    characterLength,
+    lowerSelected,
+    capitalSelected,
+    numbersSelected,
+    specialSelected
+    
+  );
 }
 )
