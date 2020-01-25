@@ -80,31 +80,34 @@ function specialInclude() {
   }
 } // end of capitalsIncluded function
 
+
+
+
 function createPassword() {
   selectPasswordLength();
   lowerInclude();
   capitalsInclude();
   numbersInclude();
   specialInclude();
+  build();
 } //end of create password function
 
 
 function build(){
-// if """function"""Selected is true, add to list of critera; if false, move on
-// display criteria to user for confirmation
-// run loop to get random selection from list of true selections to run the same number of times as the character length defined by user
-// render resulting password to the password section of the html file
+  alert(" you requested a password with " + characterLength + " characters \n which includes... \n lower case letters: " + lowerSelected + "\n capital letters: " + capitalSelected + "\n numbers: " + numbersSelected + "\n and special characters: " + specialSelected);
+  // if """function"""Selected is true, add to list of critera; if false, move on
+  // display criteria to user for confirmation
+  // run loop to get random selection from list of true selections to run the same number of times as the character length defined by user
+  // render resulting password to the password section of the html file
 }
-
-
-
 
 
 //$$$$$*****when generate button is clicked, password generation is initialized*****$$$$$
 generateEl.addEventListener("click", function (event) {
-  event.preventDefault(); //may not be needed
+  // event.preventDefault(); //may not be needed
 
   createPassword();
+
   console.log(
     characterLength,
     lowerSelected,
