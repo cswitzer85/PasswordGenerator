@@ -6,10 +6,10 @@ var specialSelected;
 var characterLengthSelected;
 var characterLength;
 var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "~", "`", "_", "-", "+", "\=", "{", "[", "\'", "]", "}", "\\", "|", ";", ":", "'", ",", "<", ".", ">", "/", "?"];
-var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "f", "w", "x", "y", "z"];
+var lowerLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upperLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 //---------------_______________---------------_______________---------------_______________---------------
-
 
 
 
@@ -95,10 +95,16 @@ function createPassword() {
 
 function build(){
   alert(" you requested a password with " + characterLength + " characters \n which includes... \n lower case letters: " + lowerSelected + "\n capital letters: " + capitalSelected + "\n numbers: " + numbersSelected + "\n and special characters: " + specialSelected);
-  // if """function"""Selected is true, add to list of critera; if false, move on
-  // display criteria to user for confirmation
-  // run loop to get random selection from list of true selections to run the same number of times as the character length defined by user
-  // render resulting password to the password section of the html file
+  
+  
+  var buildList = []
+  // // if """function"""Selected is true, add to list of critera; if false, move on
+  // // display criteria to user for confirmation
+  // // run loop to get random selection from list of true selections to run the same number of times as the character length defined by user
+  // for (var i = 0; i < characterLength; i++) {
+  //   var randomCharacter = Math.floor(Math.random() * 5) + 1; //-----------------exchange "5" for a variable based on list length
+  //     console.log(randomCharacter);
+  // // render resulting password to the password section of the html file
 }
 
 
@@ -113,7 +119,8 @@ generateEl.addEventListener("click", function (event) {
     lowerSelected,
     capitalSelected,
     numbersSelected,
-    specialSelected
+    specialSelected,
+    buildList
     
   );
 }
