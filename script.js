@@ -134,6 +134,8 @@ function createPassword() {
   }
 } //end of create password function
 
+//---------------_______________---------------Action---------------_______________---------------
+
 //$$$$$*****when generate button is clicked, password generation is initialized*****$$$$$
 generateEl.addEventListener("click", function (event) {
   createPassword();;
