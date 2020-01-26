@@ -1,5 +1,3 @@
-// *save point here*
-
 //---------------_______________---------------Variables---------------_______________---------------
 var lowerSelected;
 var capitalSelected;
@@ -12,15 +10,11 @@ var capitalLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
 var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "~", "`", "_", "-", "+", "\=", "{", "[", "\'", "]", "}", "\\", "|", ";", ":", "'", ",", "<", ".", ">", "/", "?"];
 var buildList;
-//---------------_______________---------------_______________---------------_______________---------------
-
-
-//needed variables based on html but not yet functional or tested???
-
 var generateEl = document.querySelector("#generate");
-var passwordEl = document.querySelector("#password");
 
-//functions
+
+//---------------_______________---------------Functions---------------_______________---------------
+//$$$$$*****This function is used to have the user define a number between 8 & 128 and prevent the user from moving forward until a valid entry is made.
 function selectPasswordLength() {
   characterLengthSelected = null;
   var characterLengthSelected;
@@ -30,14 +24,15 @@ function selectPasswordLength() {
     if (characterLength >= 8 && characterLength <= 128) {
       alert(characterLength + " characters it is! Let's go!");
       characterLengthSelected = true;
+      //$$$$$*****if the user selects anything other than a number between 8 & 128 an alert will pop up and the characterLengthSelected value will be set to null, which will rerun the  selectPasswordLength function*****$$$$$
     } else {
-      alert("ERROR Please enter a valid age");
+      alert("Please enter a number between 8 and 128.");
       characterLengthSelected = null;
     }
   }
-} //end of lengthSelect function
+} //$$$$$*****End of lengthSelect function
 
-//------------------------------------------------------------------*May delete and make lower-case the default*-------
+//$$$$$*****This function will ask the user if they would like to include lower case letters in the password.
 function lowerInclude() {
   lowerSelected = null;
   if (lowerSelected !== true); {
@@ -47,8 +42,9 @@ function lowerInclude() {
       lowerSelected = false;
     }
   }
-} // end of lowerIncluded function
+} //$$$$$*****End of lowerIncluded function
 
+//$$$$$*****This function will ask the user if they would like to include capital letters in the password.
 function capitalsInclude() {
   capitalSelected = null;
   if (capitalSelected !== true); {
@@ -58,8 +54,9 @@ function capitalsInclude() {
       capitalSelected = false;
     }
   }
-} // end of capitalsIncluded function
+} //$$$$$*****End of capitalsIncluded function
 
+//$$$$$*****This function will ask the user if they would like to include numbers in the password.
 function numbersInclude() {
   numbersSelected = null;
   if (numbersSelected !== true); {
@@ -69,8 +66,9 @@ function numbersInclude() {
       numbersSelected = false;
     }
   }
-} // end of numbersIncluded function
+} //$$$$$*****End of numbersIncluded function
 
+//$$$$$*****This function will ask the user if they would like to include special characters in the password.
 function specialInclude() {
   specialSelected = null;
   if (specialSelected !== true); {
@@ -80,105 +78,63 @@ function specialInclude() {
       specialSelected = false;
     }
   }
-} // end of capitalsIncluded function
+} //$$$$$*****End of capitalsIncluded function
 
-function build(){
-  
+//$$$$$*****This function takes the information obtained from the user and creates a random password.
+function build() {
+
   buildList = [];
-  
+  //$$$$$*****This alert will display the criteria chosen for the new password.
   alert(" you requested a password with " + characterLength + " characters \n which includes... \n lower case letters: " + lowerSelected + "\n capital letters: " + capitalSelected + "\n numbers: " + numbersSelected + "\n and special characters: " + specialSelected);
-  
-  if (lowerSelected === true){
-      buildList = lowerLetters;
+
+  if (lowerSelected === true) {
+    buildList = lowerLetters;
   }
-  if (capitalSelected === true){
+  if (capitalSelected === true) {
     if (buildList.length === 0) {
       buildList = capitalLetters;
     } else {
       buildList = buildList.concat(capitalLetters);
     }
   }
-  if (numbersSelected === true){
+  if (numbersSelected === true) {
     if (buildList.length === 0) {
       buildList = numbers;
     } else {
       buildList = buildList.concat(numbers);
     }
   }
-  if (specialSelected === true){
+  if (specialSelected === true) {
     if (buildList.length === 0) {
       buildList = specialCharacters;
     } else {
       buildList = buildList.concat(specialCharacters);
     }
-  }
-  
-  else if (lowerSelected === false && capitalSelected === false && numbersSelected === false && specialSelected === false){
+    //$$$$$*****This function will send an alert if no characters are approved to be in the new password and inform the user that they will need to start over.
+  } else if (lowerSelected === false && capitalSelected === false && numbersSelected === false && specialSelected === false) {
     alert("Cannot create a password without any characters selected, please try again.")
   }
-  }
+} //$$$$$*****End of the build function
 
 
-//function uses true/false status to build new array from user selected criteria
+//$$$$$*****This function is triggered by the "Generate Password" button and will execute all functions needed to create a random password.
 function createPassword() {
   selectPasswordLength();
   lowerInclude();
   capitalsInclude();
   numbersInclude();
   specialInclude();
-
-  
-  
-  
-  
-  
-  
-  
-  
   build();
+  var passwordResult = '';
+  //creates a random number the same length as what the user requested for password length
+  for (var i = 0; i < characterLength; i++) {
+    var randomChild = Math.floor(Math.random() * buildList.length);
+    passwordResult = passwordResult + buildList[randomChild];
+    document.getElementById("password").value = (passwordResult)
+  }
 } //end of create password function
-
-
-  
-  
-  // // if """function"""Selected is true, add to list of critera; if false, move on
-  // // display criteria to user for confirmation
-  // // run loop to get random selection from list of true selections to run the same number of times as the character length defined by user
-  // for (var i = 0; i < characterLength; i++) {
-  //   var randomCharacter = Math.floor(Math.random() * 5) + 1; //-----------------exchange "5" for a variable based on list length
-  //     console.log(randomCharacter);
-  // // render resulting password to the password section of the html file
-
-
 
 //$$$$$*****when generate button is clicked, password generation is initialized*****$$$$$
 generateEl.addEventListener("click", function (event) {
-  // event.preventDefault(); //may not be needed
-
-  createPassword();
-
-  console.log(
-    characterLength,
-    lowerSelected,
-    capitalSelected,
-    numbersSelected,
-    specialSelected,
-    buildList)
-
-    var passwordResult = '';
-    //creates a random number the same length as what the user requested for password length
-    for (var i = 0; i < characterLength; i++) {
-      var randomChild = Math.floor(Math.random() * buildList.length) + 1;
-      passwordResult = passwordResult + buildList[randomChild];
-      
-      console.log(passwordResult);
-      document.getElementById("password").value=(passwordResult)
-    }
-
-    
-  ;
-}
-)
-
-
-
+  createPassword();;
+})
