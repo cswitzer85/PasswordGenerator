@@ -163,21 +163,22 @@ generateEl.addEventListener("click", function (event) {
     capitalSelected,
     numbersSelected,
     specialSelected,
-    buildList
+    buildList)
+
+    var passwordResult = '';
+    //creates a random number the same length as what the user requested for password length
+    for (var i = 0; i < characterLength; i++) {
+      var randomChild = Math.floor(Math.random() * buildList.length) + 1;
+      passwordResult = passwordResult + buildList[randomChild];
+      
+      console.log(passwordResult);
+      document.getElementById("password").value=(passwordResult)
+    }
+
     
-  );
+  ;
 }
 )
-/*
-      var passwordResult = '';
-      //creates a random number the same length as what the user requested for password length
-      for (var i = 0; i < characterLength; i++) {
-        var num = Math.floor(Math.random() * 10) + 1;
-        passwordResult = passwordResult + (num);
-        
-        console.log(passwordResult);
-      }
 
 
 
-*/
